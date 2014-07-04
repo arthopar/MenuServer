@@ -1,7 +1,9 @@
-package dto;
+
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+
+import db.CategoryDAO;
+import dto.CategoryDto;
 
 public class Category extends HttpServlet {
 
@@ -49,17 +54,32 @@ public class Category extends HttpServlet {
 		
 		Gson gson = new Gson();
 		 
-		CategoryDto product = new CategoryDto();
-		product.setName("Name");
-		// convert java object to JSON format,
-		// and returned as JSON formatted string
-		String json = gson.toJson(product);
+		//get category from db
+		List<?> category = listCategory();
+		//Convert db category object to category dto
+		ArrayList<CategoryDto> categoriesList = new ArrayList<>();
+		for (Object currentCategory : category) {
+			CategoryDto categoryDto = new CategoryDto((db.Category)currentCategory);
+			categoriesList.add(categoryDto);
+		}
+		//create json object from category dto
+		String json = gson.toJson(categoriesList);
 		
-		//get response out
+		//send response to out
 		PrintWriter out = response.getWriter();
 		out.write(json);
 	}
 
+	private static List<?> listCategory() {
+		
+		CategoryDAO dao = new CategoryDAO();
+		//FIXME reload data 
+		List<?> category = dao.findAll();
+		dao.getSession().close();
+		
+		return category;
+	}
+	
 	/**
 	 * Initialization of the servlet. <br>
 	 *

@@ -13,6 +13,18 @@ public class CategoryDto implements Serializable {
 	private String name;
 	private String imagePath;
 	
+	public CategoryDto() {
+		super();
+	}
+	
+	public CategoryDto(db.Category dbObject) {
+		super();
+		
+		this.categoryId = dbObject.getId();
+		this.name = dbObject.getName();
+		this.imagePath = dbObject.getImagePath();
+	}
+	
 	public Integer getCategoryId() {
 		return categoryId;
 	}

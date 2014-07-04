@@ -15,6 +15,7 @@ public class ProductDto implements Serializable{
 	private String description;
 	private Integer raiting;
 	private int price;
+	private String imagePath;
 	
 	public Integer getCategoryId() {
 		return categoryId;
@@ -51,5 +52,11 @@ public class ProductDto implements Serializable{
 	}
 	public void setPrice(int price) {
 		this.price = price;
+	}
+	public String getImagePath() {
+		return imagePath;
+	}
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
 }
