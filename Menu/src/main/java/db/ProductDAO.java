@@ -25,8 +25,10 @@ public class ProductDAO extends BaseHibernateDAO {
 	public static final String DESCRYPTION = "descryption";
 	public static final String RAITING = "raiting";
 	public static final String PRICE = "price";
-	public static final String IMAGE_PATH = "imagePath";
-
+	public static final String IMAGE_PATH = "imageath";
+	public static final String CALORIES = "calories";
+	public static final String MINUTE = "minute";
+	
 	public void save(Product transientInstance) {
 		log.debug("saving Product instance");
 		try {
@@ -60,10 +62,10 @@ public class ProductDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public List findByExample(Product instance) {
+	public List<?> findByExample(Product instance) {
 		log.debug("finding Product instance by example");
 		try {
-			List results = getSession().createCriteria("db.Product")
+			List<?> results = getSession().createCriteria("db.Product")
 					.add(Example.create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());
@@ -74,7 +76,7 @@ public class ProductDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public List findByProperty(String propertyName, Object value) {
+	public List<?> findByProperty(String propertyName, Object value) {
 		log.debug("finding Product instance with property: " + propertyName
 				+ ", value: " + value);
 		try {
@@ -89,27 +91,27 @@ public class ProductDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public List findByName(Object name) {
+	public List<?> findByName(Object name) {
 		return findByProperty(NAME, name);
 	}
 
-	public List findByDescryption(Object descryption) {
+	public List<?> findByDescryption(Object descryption) {
 		return findByProperty(DESCRYPTION, descryption);
 	}
 
-	public List findByRaiting(Object raiting) {
+	public List<?> findByRaiting(Object raiting) {
 		return findByProperty(RAITING, raiting);
 	}
 
-	public List findByPrice(Object price) {
+	public List<?> findByPrice(Object price) {
 		return findByProperty(PRICE, price);
 	}
 
-	public List findByImagePath(Object imagePath) {
+	public List<?> findByImagePath(Object imagePath) {
 		return findByProperty(IMAGE_PATH, imagePath);
 	}
 
-	public List findAll() {
+	public List<?> findAll() {
 		log.debug("finding all Product instances");
 		try {
 			String queryString = "from Product";

@@ -7,6 +7,11 @@ public class Product extends AbstractProduct implements java.io.Serializable {
 
 	// Constructors
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -879881721297418071L;
+
 	/** default constructor */
 	public Product() {
 	}

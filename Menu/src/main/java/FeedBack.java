@@ -10,6 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 public class FeedBack extends HttpServlet {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6036411568822542681L;
+
+	/**
 	 * Constructor of the object.
 	 */
 	public FeedBack() {

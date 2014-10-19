@@ -12,10 +12,14 @@ public abstract class AbstractCategory implements java.io.Serializable {
 
 	// Fields
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 885952702502625099L;
 	private Integer id;
 	private String name;
 	private String imagePath;
-	private Set products = new HashSet(0);
+	private Set<?> products = new HashSet<>(0);
 
 	// Constructors
 
@@ -24,7 +28,7 @@ public abstract class AbstractCategory implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractCategory(String name, String imagePath, Set products) {
+	public AbstractCategory(String name, String imagePath, Set<?> products) {
 		this.name = name;
 		this.imagePath = imagePath;
 		this.products = products;
@@ -56,11 +60,11 @@ public abstract class AbstractCategory implements java.io.Serializable {
 		this.imagePath = imagePath;
 	}
 
-	public Set getProducts() {
+	public Set<?> getProducts() {
 		return this.products;
 	}
 
-	public void setProducts(Set products) {
+	public void setProducts(Set<?> products) {
 		this.products = products;
 	}
 

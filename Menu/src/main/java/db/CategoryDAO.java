@@ -1,7 +1,6 @@
 package db;
 
 import java.util.List;
-import java.util.Set;
 import org.hibernate.LockOptions;
 import org.hibernate.Query;
 import org.hibernate.criterion.Example;
@@ -24,7 +23,7 @@ public class CategoryDAO extends BaseHibernateDAO {
 			.getLogger(CategoryDAO.class);
 	// property constants
 	public static final String NAME = "name";
-	public static final String IMAGE_PATH = "imagePath";
+	public static final String IMAGE_PATH = "image_path";
 
 	public void save(Category transientInstance) {
 		log.debug("saving Category instance");
@@ -59,10 +58,10 @@ public class CategoryDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public List findByExample(Category instance) {
+	public List<?> findByExample(Category instance) {
 		log.debug("finding Category instance by example");
 		try {
-			List results = getSession().createCriteria("db.Category")
+			List<?> results = getSession().createCriteria("db.Category")
 					.add(Example.create(instance)).list();
 			log.debug("find by example successful, result size: "
 					+ results.size());
@@ -73,7 +72,7 @@ public class CategoryDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public List findByProperty(String propertyName, Object value) {
+	public List<?> findByProperty(String propertyName, Object value) {
 		log.debug("finding Category instance with property: " + propertyName
 				+ ", value: " + value);
 		try {
@@ -88,15 +87,15 @@ public class CategoryDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public List findByName(Object name) {
+	public List<?> findByName(Object name) {
 		return findByProperty(NAME, name);
 	}
 
-	public List findByImagePath(Object imagePath) {
+	public List<?> findByImagePath(Object imagePath) {
 		return findByProperty(IMAGE_PATH, imagePath);
 	}
 
-	public List findAll() {
+	public List<?> findAll() {
 		log.debug("finding all Category instances");
 		try {
 			String queryString = "from Category";

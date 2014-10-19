@@ -9,6 +9,10 @@ public abstract class AbstractProduct implements java.io.Serializable {
 
 	// Fields
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3098717311271716542L;
 	private Integer id;
 	private Category category;
 	private String name;
