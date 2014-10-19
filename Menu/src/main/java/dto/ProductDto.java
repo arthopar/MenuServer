@@ -11,12 +11,46 @@ public class ProductDto implements Serializable{
 
 	private Integer categoryId;
 	private Integer productId;
+	
 	private String name;
 	private String description;
 	private Integer raiting;
-	private int price;
+	private Double price;
+	private Integer minutes;
+	private Integer calories;
 	private String imagePath;
 	
+	public ProductDto(db.Product dbObject) {
+		super();
+		
+		this.categoryId = dbObject.getId();
+		this.name = dbObject.getName();
+		this.imagePath = dbObject.getImagePath();
+		this.description = dbObject.getDescryption();
+		this.raiting = dbObject.getRaiting();
+		this.price = dbObject.getPrice();
+		this.minutes = dbObject.getMinut();
+		this.calories = dbObject.getCalories();
+	}
+	
+	public Integer getMinutes() {
+		return minutes;
+	}
+	public void setMinutes(Integer minutes) {
+		this.minutes = minutes;
+	}
+	public Integer getCalories() {
+		return calories;
+	}
+	public void setCalories(Integer calories) {
+		this.calories = calories;
+	}
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+	public Double getPrice() {
+		return price;
+	}
 	public Integer getCategoryId() {
 		return categoryId;
 	}
@@ -46,12 +80,6 @@ public class ProductDto implements Serializable{
 	}
 	public void setRaiting(Integer raiting) {
 		this.raiting = raiting;
-	}
-	public int getPrice() {
-		return price;
-	}
-	public void setPrice(int price) {
-		this.price = price;
 	}
 	public String getImagePath() {
 		return imagePath;

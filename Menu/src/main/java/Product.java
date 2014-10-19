@@ -1,5 +1,7 @@
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
+import db.ProductDAO;
 import dto.ProductDto;
 
 @WebServlet("/test")
@@ -51,18 +54,31 @@ public class Product extends HttpServlet {
 		
 		Gson gson = new Gson();
 		 
-		ProductDto product = new ProductDto();
-		product.setDescription("descrypt");
-		product.setName("Name");
-		// convert java object to JSON format,
-		// and returned as JSON formatted string
-		String json = gson.toJson(product);
+		//get product from db
+		List<?> product = listProduct();
+		//Convert db product object to product dto
+		ArrayList<ProductDto> productList = new ArrayList<>();
+		for (Object currentproduct : product) {
+			ProductDto productDto = new ProductDto((db.Product)currentproduct);
+			productList.add(productDto);
+		}
+		//create json object from product dto
+		String json = gson.toJson(productList);
 		
-		//get response out
+		//send response to out
 		PrintWriter out = response.getWriter();
 		out.write(json);
 	}
 
+	private static List<?> listProduct() {
+		
+		ProductDAO dao = new ProductDAO();
+		//FIXME reload data 
+		List<?> product = dao.findAll();
+		dao.getSession().close();
+		
+		return product;
+	}
 	/**
 	 * The doPost method of the servlet. <br>
 	 *

@@ -11,7 +11,7 @@
    <generator class="assigned"/>
   </id>
   <many-to-one class="db.Category" fetch="select" name="category">
-   <column name="category_id"/>
+   <column name="category"/>
   </many-to-one>
   <property generated="never" lazy="false" name="name" type="java.lang.String">
    <column length="45" name="name"/>
@@ -25,7 +25,7 @@
   <property generated="never" lazy="false" name="price" type="java.lang.Double">
    <column name="price" precision="22" scale="0"/>
   </property>
-  <property generated="never" lazy="false" name="image_path" type="java.lang.String">
+  <property generated="never" lazy="false" name="imagePath" type="java.lang.String">
    <column length="225" name="image_path"/>
   </property>
   <property lazy="false" name="minut" type="java.lang.Integer">

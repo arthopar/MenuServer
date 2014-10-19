@@ -20,7 +20,9 @@ public abstract class AbstractProduct implements java.io.Serializable {
 	private Integer raiting;
 	private Double price;
 	private String imagePath;
-
+	private Integer minut;
+	private Integer calories;
+	
 	// Constructors
 
 	/** default constructor */
@@ -34,7 +36,8 @@ public abstract class AbstractProduct implements java.io.Serializable {
 
 	/** full constructor */
 	public AbstractProduct(Integer id, Category category, String name,
-			String descryption, Integer raiting, Double price, String imagePath) {
+			String descryption, Integer raiting, Double price, String imagePath, Integer minut, Integer calories) {
+		super();
 		this.id = id;
 		this.category = category;
 		this.name = name;
@@ -100,6 +103,22 @@ public abstract class AbstractProduct implements java.io.Serializable {
 
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
+	}
+
+	public Integer getMinut() {
+		return minut;
+	}
+
+	public void setMinut(Integer minut) {
+		this.minut = minut;
+	}
+
+	public Integer getCalories() {
+		return calories;
+	}
+
+	public void setCalories(Integer calories) {
+		this.calories = calories;
 	}
 
 }
