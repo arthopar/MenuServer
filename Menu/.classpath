@@ -17,10 +17,11 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.31-bin.jar">
+	<classpathentry exported="true" kind="lib" path="lib/mysql-connector-java-5.1.31-bin.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
 		</attributes>
 	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Artak/git/MenuServer1/Menu/lib/ojdbc7.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

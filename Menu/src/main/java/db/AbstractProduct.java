@@ -17,8 +17,8 @@ public abstract class AbstractProduct implements java.io.Serializable {
 	private Category category;
 	private String name;
 	private String descryption;
-	private Integer raiting;
-	private Double price;
+	private Double raiting;
+	private Integer price;
 	private String imagePath;
 	private Integer minut;
 	private Integer calories;
@@ -36,7 +36,7 @@ public abstract class AbstractProduct implements java.io.Serializable {
 
 	/** full constructor */
 	public AbstractProduct(Integer id, Category category, String name,
-			String descryption, Integer raiting, Double price, String imagePath, Integer minut, Integer calories) {
+			String descryption, Double raiting, Integer price, String imagePath, Integer minut, Integer calories) {
 		super();
 		this.id = id;
 		this.category = category;
@@ -81,19 +81,19 @@ public abstract class AbstractProduct implements java.io.Serializable {
 		this.descryption = descryption;
 	}
 
-	public Integer getRaiting() {
+	public Double getRaiting() {
 		return this.raiting;
 	}
 
-	public void setRaiting(Integer raiting) {
+	public void setRaiting(Double raiting) {
 		this.raiting = raiting;
 	}
 
-	public Double getPrice() {
+	public Integer getPrice() {
 		return this.price;
 	}
 
-	public void setPrice(Double price) {
+	public void setPrice(Integer price) {
 		this.price = price;
 	}
 

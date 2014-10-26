@@ -21,6 +21,7 @@ import org.slf4j.LoggerFactory;
 public class ProductDAO extends BaseHibernateDAO {
 	private static final Logger log = LoggerFactory.getLogger(ProductDAO.class);
 	// property constants
+	public static final String CATEGORY_ID = "category";
 	public static final String NAME = "name";
 	public static final String DESCRYPTION = "descryption";
 	public static final String RAITING = "raiting";
@@ -91,6 +92,10 @@ public class ProductDAO extends BaseHibernateDAO {
 		}
 	}
 
+	public List<?> findByCategoryId(Object id) {
+		return findByProperty(CATEGORY_ID, id);
+	}
+	
 	public List<?> findByName(Object name) {
 		return findByProperty(NAME, name);
 	}

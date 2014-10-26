@@ -52,29 +52,50 @@ public class Product extends HttpServlet {
 
 		response.setContentType("application/json");
 		
+		//send response to out
+		PrintWriter out = response.getWriter();
+		
+		String stringId = request.getParameter("id");
+		
+		if(stringId != null)
+		{
+			out.write(convertObjectToJson(listProductById(Integer.parseInt(stringId))));
+			return;
+		}
+		
+		out.write(convertObjectToJson(listProduct()));
+	}
+
+	private static String convertObjectToJson(List<?> product)
+	{
 		Gson gson = new Gson();
-		 
-		//get product from db
-		List<?> product = listProduct();
+		
 		//Convert db product object to product dto
 		ArrayList<ProductDto> productList = new ArrayList<>();
 		for (Object currentproduct : product) {
 			ProductDto productDto = new ProductDto((db.Product)currentproduct);
 			productList.add(productDto);
 		}
-		//create json object from product dto
-		String json = gson.toJson(productList);
 		
-		//send response to out
-		PrintWriter out = response.getWriter();
-		out.write(json);
+		//create json object from product dto
+		return gson.toJson(productList);
 	}
-
+	
 	private static List<?> listProduct() {
 		
 		ProductDAO dao = new ProductDAO();
 		//FIXME reload data 
 		List<?> product = dao.findAll();
+		dao.getSession().close();
+		
+		return product;
+	}
+	
+	private static List<?> listProductById(Integer id) {
+		
+		ProductDAO dao = new ProductDAO();
+		//FIXME reload data 
+		List<?> product = dao.findByCategoryId(id);
 		dao.getSession().close();
 		
 		return product;
